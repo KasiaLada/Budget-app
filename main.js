@@ -9,9 +9,11 @@ const incomeTitle = document.querySelector("#incomeTitle");
 const expenseTitle = document.querySelector("#expenseTitle");
 const expenseValue = document.querySelector("#expenseValue");
 const incomesValue = document.querySelector("#incomesValue");
+const expensesValue = document.querySelector("#expensesValue");
+// const remove = document.querySelector("li" / "containerId");
 
-const incomeSum = [];
-const expenseSum = [];
+let incomeSum = [];
+let expenseSum = [];
 
 incomeForm.addEventListener("submit", event => {
 	event.preventDefault();
@@ -44,29 +46,48 @@ const addButtonContainer = (title, amount, containerId, mode) => {
 	li.appendChild(editButton);
 	const deleteButton = document.createElement("button");
 	deleteButton.textContent = "Delete";
+	deleteButton.addEventListener("click", () => {
+		if (mode === INCOME) {
+			removeData(incomeSum, li, incomesValue);
+		} else {
+			removeData(expenseSum, li, expensesValue);
+		}
+	});
 	li.appendChild(deleteButton);
 	container.appendChild(li);
-	if (mode === INCOME) {
-		manageData(incomeSum, incomesValue);
-	} else {
-		manageData(expenseSum,expenseValue );
-	}
-};
-const manageData = (sum, sumValue) => {
-	sum.push({
+	const item = {
 		id: li.id,
 		title: title,
 		amount: Number(amount),
-	});
+	};
+	if (mode === INCOME) {
+		manageData(incomeSum, incomesValue, item);
+	} else {
+		manageData(expenseSum, expensesValue, item);
+	}
+};
+const manageData = (sum, sumValue, item) => {
+	sum.push(item);
 	sumValue.textContent = calculateSum(sum);
 };
 
-
-const calculateSum = (sum) => {
+const removeData = (array, li, sum) => {
+	li.remove();
+	const newArray = [...array.filter(item => {
+		if (item.id !== li.id) {
+			return item;
+		}
+	})];
+	console.log(newArray);
+	array = [...newArray];
+	sum.textContent = calculateSum(newArray);
+};
+const calculateSum = sum => {
 	return sum.reduce((acc, prev) => {
-		console.log({ acc, prev });
 		return acc + prev.amount;
 	}, 0);
 };
+// const removeButton = incomeSum.filter((el) => {
 
-// li.remove();
+// })
+// // li.remove();
