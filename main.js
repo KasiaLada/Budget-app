@@ -10,7 +10,7 @@ const expenseTitle = document.querySelector("#expenseTitle");
 const expenseValue = document.querySelector("#expenseValue");
 const incomesValue = document.querySelector("#incomesValue");
 const expensesValue = document.querySelector("#expensesValue");
-// const remove = document.querySelector("li" / "containerId");
+
 
 let incomeSum = [];
 let expenseSum = [];
@@ -48,9 +48,9 @@ const addButtonContainer = (title, amount, containerId, mode) => {
 	deleteButton.textContent = "Delete";
 	deleteButton.addEventListener("click", () => {
 		if (mode === INCOME) {
-			removeData(incomeSum, li, incomesValue);
+			incomeSum = removeData(incomeSum, li, incomesValue);
 		} else {
-			removeData(expenseSum, li, expensesValue);
+			expenseSum = removeData(expenseSum, li, expensesValue);
 		}
 	});
 	li.appendChild(deleteButton);
@@ -66,6 +66,7 @@ const addButtonContainer = (title, amount, containerId, mode) => {
 		manageData(expenseSum, expensesValue, item);
 	}
 };
+
 const manageData = (sum, sumValue, item) => {
 	sum.push(item);
 	sumValue.textContent = calculateSum(sum);
@@ -73,21 +74,19 @@ const manageData = (sum, sumValue, item) => {
 
 const removeData = (array, li, sum) => {
 	li.remove();
-	const newArray = [...array.filter(item => {
-		if (item.id !== li.id) {
-			return item;
-		}
-	})];
-	console.log(newArray);
-	array = [...newArray];
+	const newArray = [
+		...array.filter(item => {
+			if (item.id !== li.id) {
+				return item;
+			}
+		}),
+	];
+	
 	sum.textContent = calculateSum(newArray);
+	return newArray;
 };
 const calculateSum = sum => {
 	return sum.reduce((acc, prev) => {
 		return acc + prev.amount;
 	}, 0);
 };
-// const removeButton = incomeSum.filter((el) => {
-
-// })
-// // li.remove();
