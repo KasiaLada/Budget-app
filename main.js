@@ -10,7 +10,7 @@ const expenseTitle = document.querySelector("#expenseTitle");
 const expenseValue = document.querySelector("#expenseValue");
 const incomesValue = document.querySelector("#incomesValue");
 const expensesValue = document.querySelector("#expensesValue");
-
+const budgetValue = document.querySelector("#budgetValue");
 
 let incomeSum = [];
 let expenseSum = [];
@@ -39,7 +39,14 @@ const addButtonContainer = (title, amount, containerId, mode) => {
 	const container = document.querySelector(containerId);
 	const li = document.createElement("li");
 	li.id = uuidv4();
-	li.textContent = `${title} ${amount}`;
+	// li.textContent = `${title} ${amount}`;
+	const spanTitle = document.createElement("span");
+	spanTitle.textContent = title;
+	li.appendChild(spanTitle);
+	const spanAmount = document.createElement("span");
+	spanAmount.textContent = amount;
+	li.appendChild(spanAmount);
+
 	li.style.listStyle = "none";
 	const editButton = document.createElement("button");
 	editButton.textContent = "Edit";
@@ -65,6 +72,32 @@ const addButtonContainer = (title, amount, containerId, mode) => {
 	} else {
 		manageData(expenseSum, expensesValue, item);
 	}
+
+	// ------------
+
+	editButton.addEventListener("click", () => {
+		spanAmount.setAttribute("contenteditable", true);
+		spanTitle.setAttribute("contenteditable", true);
+	});
+	spanAmount.addEventListener("input", e => {
+		// console.log(e.target.innerText);
+		// console.log(li.id);
+		// incomeSum = incomeSum.map(item => {
+		// 	if (item.id === li.id) {
+		// 		return { ...item, amount: Number(e.target.innerText) };
+		// 	} else {
+		// 		return item
+		// 	}
+		// });
+		// incomesValue.textContent = calculateSum(incomeSum);
+
+		if (mode === INCOME) {
+			incomeSum = removeData(incomeSum, li, incomesValue);
+		} else {
+			expenseSum = removeData(expenseSum, li, expensesValue);
+		}
+	});
+	// -----------
 };
 
 const manageData = (sum, sumValue, item) => {
@@ -81,7 +114,7 @@ const removeData = (array, li, sum) => {
 			}
 		}),
 	];
-	
+
 	sum.textContent = calculateSum(newArray);
 	return newArray;
 };
