@@ -10,7 +10,7 @@ const expenseTitle = document.querySelector("#expenseTitle");
 const expenseValue = document.querySelector("#expenseValue");
 const incomesValue = document.querySelector("#incomesValue");
 const expensesValue = document.querySelector("#expensesValue");
-const budgetValue = document.querySelector("#budgetValue");
+// const budgetValue = document.querySelector("#budgetValue");
 
 let incomeSum = [];
 let expenseSum = [];
@@ -80,29 +80,54 @@ const addButtonContainer = (title, amount, containerId, mode) => {
 		spanTitle.setAttribute("contenteditable", true);
 	});
 	spanAmount.addEventListener("input", e => {
-		// console.log(e.target.innerText);
-		// console.log(li.id);
-		// incomeSum = incomeSum.map(item => {
-		// 	if (item.id === li.id) {
-		// 		return { ...item, amount: Number(e.target.innerText) };
-		// 	} else {
-		// 		return item
-		// 	}
-		// });
-		// incomesValue.textContent = calculateSum(incomeSum);
-
+		console.log(e.target.innerText);
+		console.log(li.id);
 		if (mode === INCOME) {
-			incomeSum = removeData(incomeSum, li, incomesValue);
+		// 	incomeSum = incomeSum.map(item => {
+		// 		if (item.id === li.id) {
+		// 			return { ...item, amount: Number(e.target.innerText) };
+		// 		} else {
+		// 			return item;
+		// 		}
+		// 	});
+		// 	incomesValue.textContent = calculateSum(incomeSum);
+		// }
+		// else {
+		// 	expenseSum = expenseSum.map(item => {
+		// 		if (item.id === li.id) {
+		// 			return { ...item, amount: Number(e.target.innerText) };
+		// 		} else {
+		// 			return item;
+		// 		}
+		// 	});
+		// expensesValue.textContent = calculateSum(expenseSum);
+			
+		}
+		if (mode === INCOME) {
+			incomeSum = editData(incomeSum, li, incomesValue, e);
 		} else {
-			expenseSum = removeData(expenseSum, li, expensesValue);
+			expenseSum = editData(expenseSum, li, expensesValue, e);
 		}
 	});
 	// -----------
 };
 
+
 const manageData = (sum, sumValue, item) => {
 	sum.push(item);
 	sumValue.textContent = calculateSum(sum);
+};
+const editData = (array, li, sumAllData, e) => {
+	const newArray = array.map(item => {
+		if (item.id === li.id) {
+			return { ...item, amount: Number(e.target.innerText) };
+		} else {
+			return item;
+		}
+	});
+
+	sumAllData.textContent = calculateSum(newArray);
+	return newArray
 };
 
 const removeData = (array, li, sum) => {
