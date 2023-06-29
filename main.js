@@ -11,7 +11,6 @@ const expenseValue = document.querySelector('#expenseValue');
 const incomesValue = document.querySelector('#incomesValue');
 const expensesValue = document.querySelector('#expensesValue');
 const sum = document.querySelector('#sum');
-// const budgetValue = document.querySelector("#budgetValue");
 
 let incomeSum = [];
 let expenseSum = [];
@@ -27,10 +26,14 @@ expenseForm.addEventListener('submit', (event) => {
 });
 
 const addButtonContainer = (title, amount, containerId, mode) => {
+	if (amount <= 0) {
+		alert('akceptujemy tylko wartości dodatnie');
+		return;
+	}
 	const container = document.querySelector(containerId);
 	const li = document.createElement('li');
 	li.id = uuidv4();
-	// li.textContent = `${title} ${amount}`;
+
 	const spanTitle = document.createElement('span');
 	spanTitle.textContent = title;
 	li.appendChild(spanTitle);
@@ -50,7 +53,9 @@ const addButtonContainer = (title, amount, containerId, mode) => {
 		} else {
 			expenseSum = removeData(expenseSum, li, expensesValue);
 		}
+		calculateAllSum();
 	});
+
 	li.appendChild(deleteButton);
 	container.appendChild(li);
 	const item = {
@@ -64,42 +69,23 @@ const addButtonContainer = (title, amount, containerId, mode) => {
 		manageData(expenseSum, expensesValue, item);
 	}
 
-	// ------------
-
 	editButton.addEventListener('click', () => {
 		spanAmount.setAttribute('contenteditable', true);
 		spanTitle.setAttribute('contenteditable', true);
 	});
 	spanAmount.addEventListener('input', (e) => {
-		console.log(e.target.innerText);
-		console.log(li.id);
-		if (mode === INCOME) {
-			// 	incomeSum = incomeSum.map(item => {
-			// 		if (item.id === li.id) {
-			// 			return { ...item, amount: Number(e.target.innerText) };
-			// 		} else {
-			// 			return item;
-			// 		}
-			// 	});
-			// 	incomesValue.textContent = calculateSum(incomeSum);
-			// }
-			// else {
-			// 	expenseSum = expenseSum.map(item => {
-			// 		if (item.id === li.id) {
-			// 			return { ...item, amount: Number(e.target.innerText) };
-			// 		} else {
-			// 			return item;
-			// 		}
-			// 	});
-			// expensesValue.textContent = calculateSum(expenseSum);
+		if (Number(e.target.innerText) <= 0) {
+			alert('akceptujemy tylko wartości dodatnie, podaj wartość dodatnią');
+			return;
 		}
 		if (mode === INCOME) {
 			incomeSum = editData(incomeSum, li, incomesValue, e);
 		} else {
 			expenseSum = editData(expenseSum, li, expensesValue, e);
 		}
+		calculateAllSum();
 	});
-	// -----------
+	calculateAllSum();
 };
 
 const manageData = (sum, sumValue, item) => {
@@ -144,20 +130,9 @@ const calculateAllSum = () => {
 	const allSum = incomesSum - expensesSum;
 	if (allSum === 0) {
 		sum.innerText = 'Balance is 0 PLN';
+		calculateAllSum(incomesSum, expensesSum);
 	}
 	if (allSum > 0) {
 		sum.innerText = `You can stil spend ${allSum}PLN`;
-	} else 
-	sum.innerText = `You spent too much ${allSum} PLN`;
+	} else sum.innerText = `You spent too much ${allSum} PLN`;
 };
-
-// function subtract(incomesSum, expensesSum)
-// return incomesSum - expensesSum;
-// {
-
-//   let result = subtract(incomesSum - expensesSum);
-
-//   return result(incomesSum, expensesSum);
-
-
-// }

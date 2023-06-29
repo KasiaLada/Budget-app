@@ -1,198 +1,152 @@
 @import './variables.css';
 
-body{
-    background-image: var(--main-bg-gradient)
-} 
-
-html{
-    font-family: Roboto, sans-serif;
+body {
+	background-image: var(--main-bg-gradient);
 }
 
-input{
-    margin: 5px 0;
+html {
+	font-family: Roboto, sans-serif;
 }
 
-main{
-    min-height: 100vh;
+input {
+	margin: 5px 0;
 }
 
-.container{
-    width: 100%;
-    margin: 0 auto;
-    padding: 30px 10px;
+main {
+	min-height: 100vh;
 }
 
-.flex{
-    display: flex;
+.container {
+	width: 100%;
+	margin: 0 auto;
+	padding: 30px 10px;
 }
 
-.flex--space-between{
-    justify-content: space-between;
+.flex {
+	display: flex;
 }
 
-.text--center{
-    text-align: center;
+.flex--space-between {
+	justify-content: space-between;
 }
 
-.app__logo{
-    width: 150px;
-    height: 150px;
-    margin: 30px auto;
+.text--center {
+	text-align: center;
 }
 
-.app__logo img{
-    width: 100%;
-    height: auto;
+.app__logo {
+	width: 150px;
+	height: 150px;
+	margin: 30px auto;
 }
 
-h1{
-    color: var(--peach);
-    font-size: var(--font-xl);
-    font-weight: 700;
+.app__logo img {
+	width: 100%;
+	height: auto;
 }
 
-h2{
-    font-size: var(--font-m);
-    font-weight: 700;
+h1 {
+	color: var(--peach);
+	font-size: var(--font-xl);
+	font-weight: 700;
 }
 
-.budget__state{
-    font-size: var(--font-l);
-    font-weight: 700;
+h2 {
+	font-size: var(--font-m);
+	font-weight: 700;
 }
 
-.budget__state--success{
-    color: var(--success);
+.budget__state {
+	font-size: var(--font-l);
+	font-weight: 700;
 }
 
-/* This class can be used when the budget value is 0 
-.budget__state--warning{
-    color: var(--warning)
-} */
-
-/* This class can be used when the budget value is below 0
-.budget__state--danger{
-    color: var(--danger)
-} */
-
-.budget__list__wrapper{
-    margin: 30px 0;
-    flex-direction: column;
+.budget__state--success {
+	color: var(--success);
 }
 
-.budget__incomes, 
-.budget__expenses{
-    margin-top: 30px;
+.budget__list__wrapper {
+	margin: 30px 0;
+	flex-direction: column;
 }
 
-.budget__list{
-    padding: 20px 0;
-    border-top: 1px solid var(--deep-blue);
-    border-bottom: 1px solid var(--deep-blue);
+.budget__incomes,
+.budget__expenses {
+	margin-top: 30px;
 }
 
-.incomes__header{
-    color: var(--golden);
+.budget__list {
+	padding: 20px 0;
+	border-top: 1px solid var(--deep-blue);
+	border-bottom: 1px solid var(--deep-blue);
 }
 
-.expenses__header{
-    color: var(--orange);
+.incomes__header {
+	color: var(--golden);
 }
 
-.budget__list__form{
-    margin: 15px 0;
+.expenses__header {
+	color: var(--orange);
 }
 
-.budget__list__form__input{
-    font-size: var(--font-sm);
-    line-height: 24px;
-    border: none;
+.budget__list__form {
+	margin: 15px 0;
 }
 
-.budget__list__form__input--text{
-    width: 270px;
+.budget__list__form__input {
+	font-size: var(--font-sm);
+	line-height: 24px;
+	border: none;
 }
 
-.budget__list__form__input--number{
-    width: 80px
+.budget__list__form__input--text {
+	width: 270px;
 }
 
-.budget__list__form__input__button{
-    padding: 3px 20px;
-    border: none;
-    background-color: var(--deep-blue);
-    color: var(--white);
-    font-size: var(--font-sm);
-    font-weight: 700;
+.budget__list__form__input--number {
+	width: 80px;
 }
 
-.budget__list__summary{
-    margin-top: 30px;
-    border-bottom: 1px solid var(--success);
-    color: var(--deep-blue);
-    font-size: var(--font-sm);
-    font-weight: 700;
+.budget__list__form__input__button {
+	padding: 3px 20px;
+	border: none;
+	background-color: var(--deep-blue);
+	color: var(--white);
+	font-size: var(--font-sm);
+	font-weight: 700;
 }
 
-@media screen and (min-width: 1024px){
-    .container{
-        width: 960px;
-    }
-
-    .budget__list__wrapper{
-        flex-direction: row;
-    }
-
-    .budget__incomes, 
-    .budget__expenses{
-        margin-top: 0;
-    }
+.budget__list__summary {
+	margin-top: 30px;
+	border-bottom: 1px solid var(--success);
+	color: var(--deep-blue);
+	font-size: var(--font-sm);
+	font-weight: 700;
 }
 
+@media screen and (min-width: 1024px) {
+	.container {
+		width: 960px;
+	}
 
+	.budget__list__wrapper {
+		flex-direction: row;
+	}
 
-/* A SAMPLE STYLING OF BUDGET LIST ITEM
-
-.budget__list__item{
-    flex-direction: column;
-    padding: 2px 0;
-    border: 1px solid var(--white);
-    background-color: var(--biscuit);
+	.budget__incomes,
+	.budget__expenses {
+		margin-top: 0;
+	}
 }
 
-.budget__list__item__button{
-    padding: 3px 15px;
-    margin: 2px;
-    border: none;
-    color: var(--white);
-    font-size: var(--font-s);
-    font-weight: 700;
-    line-height: 18px;
+footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
 }
 
-.budget__list__item__button--edit{
-    background-color: var(--edit);
-}
-
-.budget__list__item__button--delete{
-    background-color: var(--danger);
-}
-
-@media screen and (min-width: 1024px){
-    .budget__list__item{
-        flex-direction: row;
-        align-items: center;
-    }
-} */
-
-footer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.icon__credentials{
-    color: var(--white);
-    font-size: var(--font-s);
+.icon__credentials {
+	color: var(--white);
+	font-size: var(--font-s);
 }
