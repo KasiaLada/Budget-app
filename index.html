@@ -23,10 +23,10 @@
 		<section class="flex flex--space-between budget__list__wrapper">
 			<div class="budget__incomes">
 				<h2 class="budget__list__header incomes__header">Incomes</h2>
-				<form id="incomeForm" class="budget__list__form" contenteditable="true">
-					<input type="text" id="incomeTitle"
+				<form id="incomeForm" class="budget__list__form">
+					<input type="text" id="incomeTitle" placeholder="title" required
 						class="budget__list__form__input budget__list__form__input--text" />
-					<input contenteditable="true" type="number" id="incomeValue"
+					<input contenteditable="true" type="number" id="incomeValue" placeholder="amount" required
 						class="budget__list__form__input budget__list__form__input--number" />
 					<input type="submit" value="Add" class="budget__list__form__input__button" />
 				</form>
@@ -40,9 +40,10 @@
 			<div class="budget__expenses">
 				<h2 class="budget__list__header expenses__header">Expenses</h2>
 				<form id="expenseForm" class="budget__list__form">
-					<input type="text" id="expenseTitle"
+					<input type="text" id="expenseTitle" placeholder="title" required
 						class="budget__list__form__input budget__list__form__input--text" />
-					<input type="number" id="expenseValue"
+					<input contenteditable="true" type="number" id="expenseValue"
+					placeholder="amount" required
 						class="budget__list__form__input budget__list__form__input--number" />
 					<input type="submit" value="Add" class="budget__list__form__input__button" />
 				</form>
@@ -61,5 +62,4 @@
 	</footer>
 	<script src="main.js" type="module"></script>
 </body>
-
 </html>

@@ -150,3 +150,16 @@ footer {
 	color: var(--white);
 	font-size: var(--font-s);
 }
+.dynamic-item > span {
+	padding-right: 10px;
+}
+.dynamic-item > button {
+	margin-right: 10px;
+	margin-bottom: 8px;
+	padding: 1px 15px;
+	border: none;
+	background-color: var(--deep-blue);
+	color: var(--white);
+	font-size: 15px;
+	font-weight: 400;
+}

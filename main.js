@@ -18,11 +18,15 @@ let expenseSum = [];
 incomeForm.addEventListener('submit', (event) => {
 	event.preventDefault();
 	addButtonContainer(incomeTitle.value, incomeValue.value, '#incomesList', INCOME);
+	incomeTitle.value = '';
+	incomeValue.value = '';
 });
 
 expenseForm.addEventListener('submit', (event) => {
 	event.preventDefault();
 	addButtonContainer(expenseTitle.value, expenseValue.value, '#expensesList', EXPENSE);
+	expenseTitle.value = '';
+	expenseValue.value = '';
 });
 
 const addButtonContainer = (title, amount, containerId, mode) => {
@@ -33,6 +37,7 @@ const addButtonContainer = (title, amount, containerId, mode) => {
 	const container = document.querySelector(containerId);
 	const li = document.createElement('li');
 	li.id = uuidv4();
+	li.classList.add('dynamic-item');
 
 	const spanTitle = document.createElement('span');
 	spanTitle.textContent = title;
@@ -45,6 +50,10 @@ const addButtonContainer = (title, amount, containerId, mode) => {
 	const editButton = document.createElement('button');
 	editButton.textContent = 'Edit';
 	li.appendChild(editButton);
+	const saveButton = document.createElement('button');
+	saveButton.textContent = 'Save';
+	saveButton.hidden = true;
+	li.appendChild(saveButton);
 	const deleteButton = document.createElement('button');
 	deleteButton.textContent = 'Delete';
 	deleteButton.addEventListener('click', () => {
@@ -72,6 +81,14 @@ const addButtonContainer = (title, amount, containerId, mode) => {
 	editButton.addEventListener('click', () => {
 		spanAmount.setAttribute('contenteditable', true);
 		spanTitle.setAttribute('contenteditable', true);
+		saveButton.hidden = false;
+		editButton.hidden = true;
+	});
+	saveButton.addEventListener('click', () => {
+		spanAmount.setAttribute('contenteditable', false);
+		spanTitle.setAttribute('contenteditable', false);
+		saveButton.hidden = true;
+		editButton.hidden = false;
 	});
 	spanAmount.addEventListener('input', (e) => {
 		if (Number(e.target.innerText) <= 0) {
@@ -130,7 +147,6 @@ const calculateAllSum = () => {
 	const allSum = incomesSum - expensesSum;
 	if (allSum === 0) {
 		sum.innerText = 'Balance is 0 PLN';
-		calculateAllSum(incomesSum, expensesSum);
 	}
 	if (allSum > 0) {
 		sum.innerText = `You can stil spend ${allSum}PLN`;
