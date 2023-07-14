@@ -42,18 +42,21 @@ const addButtonContainer = (title, amount, containerId, mode) => {
 	const spanTitle = document.createElement('span');
 	spanTitle.textContent = title;
 	li.appendChild(spanTitle);
+
 	const spanAmount = document.createElement('span');
 	spanAmount.textContent = amount;
 	li.appendChild(spanAmount);
-
 	li.style.listStyle = 'none';
+
 	const editButton = document.createElement('button');
 	editButton.textContent = 'Edit';
 	li.appendChild(editButton);
+
 	const saveButton = document.createElement('button');
 	saveButton.textContent = 'Save';
 	saveButton.hidden = true;
 	li.appendChild(saveButton);
+
 	const deleteButton = document.createElement('button');
 	deleteButton.textContent = 'Delete';
 	deleteButton.addEventListener('click', () => {
@@ -91,8 +94,9 @@ const addButtonContainer = (title, amount, containerId, mode) => {
 		editButton.hidden = false;
 	});
 	spanAmount.addEventListener('input', (e) => {
-		if (Number(e.target.innerText) <= 0) {
+		if (isNaN(e.target.innerText) || Number(e.target.innerText) <= 0) {
 			alert('akceptujemy tylko wartości dodatnie, podaj wartość dodatnią');
+			spanAmount.textContent = '';
 			return;
 		}
 		if (mode === INCOME) {

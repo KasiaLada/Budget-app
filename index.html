@@ -1,65 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Budget planner</title>
+		<link rel="stylesheet" href="./style.css" />
+	</head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Budget planner</title>
-	<link rel="stylesheet" href="./style.css" />
-</head>
-
-<body>
-	<main class="container">
-		<header>
-			<h1 class="text--center">Home budget</h1>
-			<div class="app__logo"><img src="./budget.png" /></div>
-			<div id="budgetState" class="budget__state budget__state--success">
-				<p id="sum" class="text--center">
-					Balance is 0 PLN
-				</p>
-			</div>
-		</header>
-		<section class="flex flex--space-between budget__list__wrapper">
-			<div class="budget__incomes">
-				<h2 class="budget__list__header incomes__header">Incomes</h2>
-				<form id="incomeForm" class="budget__list__form">
-					<input type="text" id="incomeTitle" placeholder="title" required
-						class="budget__list__form__input budget__list__form__input--text" />
-					<input contenteditable="true" type="number" id="incomeValue" placeholder="amount" required
-						class="budget__list__form__input budget__list__form__input--number" />
-					<input type="submit" value="Add" class="budget__list__form__input__button" />
-				</form>
-				<ul id="incomesList" class="budget__list">
-
-				</ul>
-				<p class="budget__list__summary">
-					Incomes sum: <span id="incomesValue">0</span> PLN
-				</p>
-			</div>
-			<div class="budget__expenses">
-				<h2 class="budget__list__header expenses__header">Expenses</h2>
-				<form id="expenseForm" class="budget__list__form">
-					<input type="text" id="expenseTitle" placeholder="title" required
-						class="budget__list__form__input budget__list__form__input--text" />
-					<input contenteditable="true" type="number" id="expenseValue"
-					placeholder="amount" required
-						class="budget__list__form__input budget__list__form__input--number" />
-					<input type="submit" value="Add" class="budget__list__form__input__button" />
-				</form>
-				<ul id="expensesList" class="budget__list">
-
-				</ul>
-				<p class="budget__list__summary">
-					Expenses sum: <span id="expensesValue">0</span> PLN
-				</p>
-			</div>
-		</section>
-	</main>
-	<footer>
-		<a class="icon__credentials" href="https://www.flaticon.com/free-icons/accounting"
-			title="accounting icons">Accounting icons created by Eucalyp - Flaticon</a>
-	</footer>
-	<script src="main.js" type="module"></script>
-</body>
+	<body>
+		<main class="container">
+			<header>
+				<h1 class="text--center">Home budget</h1>
+				<div class="app__logo"><img src="./budget.png" /></div>
+				<div id="budgetState" class="budget__state budget__state--success">
+					<p id="sum" class="text--center">Balance is 0 PLN</p>
+				</div>
+			</header>
+			<section class="flex flex--space-between budget__list__wrapper">
+				<div class="budget__incomes">
+					<h2 class="budget__list__header incomes__header">Incomes</h2>
+					<form id="incomeForm" class="budget__list__form">
+						<input
+							type="text"
+							id="incomeTitle"
+							placeholder="title"
+							required
+							class="budget__list__form__input budget__list__form__input--text"
+							min="0.01"
+							step="0.01" />
+						<input
+							contenteditable="true"
+							type="number"
+							id="incomeValue"
+							placeholder="amount"
+							required
+							class="budget__list__form__input budget__list__form__input--number" />
+						<input type="submit" value="Add" class="budget__list__form__input__button" />
+					</form>
+					<ul id="incomesList" class="budget__list"></ul>
+					<p class="budget__list__summary">Incomes sum: <span id="incomesValue">0</span> PLN</p>
+				</div>
+				<div class="budget__expenses">
+					<h2 class="budget__list__header expenses__header">Expenses</h2>
+					<form id="expenseForm" class="budget__list__form">
+						<input
+							type="text"
+							id="expenseTitle"
+							placeholder="title"
+							required
+							class="budget__list__form__input budget__list__form__input--text" />
+						<input
+							contenteditable="true"
+							type="number"
+							id="expenseValue"
+							placeholder="amount"
+							required
+							class="budget__list__form__input budget__list__form__input--number" />
+						<input type="submit" value="Add" class="budget__list__form__input__button" />
+					</form>
+					<ul id="expensesList" class="budget__list"></ul>
+					<p class="budget__list__summary">Expenses sum: <span id="expensesValue">0</span> PLN</p>
+				</div>
+			</section>
+		</main>
+		<footer>
+			<a class="icon__credentials" href="https://www.flaticon.com/free-icons/accounting" title="accounting icons"
+				>Accounting icons created by Eucalyp - Flaticon</a
+			>
+		</footer>
+		<script src="main.js" type="module"></script>
+	</body>
 </html>
